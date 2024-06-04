@@ -1,3 +1,4 @@
+import { sidebarLinks } from '@/constants'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -11,20 +12,10 @@ const LeftSidebar = () => {
               <h1 className='text-24 font-extrabold text-white max-lg:hidden'>Podcast</h1>
             </Link>
 
-            {[
-              {
-                route: '/profile',
-                label: 'Profile',
-                imgURL: '/icons/microphone.svg'
-              },
-              {
-                route: '/home',
-                label: 'Home',
-                imgURL: '/icons/home.svg'
-              },
-            ].map(( {route, label} ) => {
-              return <Link href={route}>
-              { label }
+            {sidebarLinks.map(( {route, label, imgURL} ) => {
+              return <Link href={route} key={label} className='flex gap-3'>
+                <Image src={imgURL} alt={label} width={24} height={24} />
+                <p>{label}</p>
               </Link>
             })}
         </nav>
